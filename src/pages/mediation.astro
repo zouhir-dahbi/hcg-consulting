@@ -19,7 +19,7 @@ const steps = [
 
 const related = [
   ['Construction Defect', '/construction-defect'],
-  ['Cost &amp; Delay Claims', '/cost-and-delay-claims'],
+  ['Cost & Delay Claims', '/cost-and-delay-claims'],
   ['Expert Witness', '/expert-witness'],
 ];
 ---
@@ -46,6 +46,17 @@ const related = [
           <p class="text-slate-600 text-lg">
             The difference is background: having spent 45 years in construction management and 18 years as an expert, I can follow the technical detail of a defect, cost, or schedule dispute — and keep the conversation on what the parties can actually control.
           </p>
+          <ul class="mt-6 space-y-3">
+            {[
+              'Confidential, non-binding, and structured to stay below litigation costs',
+              'A neutral who can follow the technical record, not just each side’s position',
+              'Written terms of resolution the parties can sign with confidence',
+            ].map((d) => (
+              <li class="feature-item">
+                <span class="text-slate-700">{d}</span>
+              </li>
+            ))}
+          </ul>
         </div>
         <div class="rounded-xl overflow-hidden shadow-card">
           <Image src={siteImages.mediation} alt="Parties and counsel in a meeting discussing resolution" class="w-full h-full object-cover aspect-[4/3]" width={900} height={680} sizes="(min-width: 1024px) 45vw, 100vw" loading="lazy" />

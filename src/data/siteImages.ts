@@ -6,7 +6,7 @@
 // slot whose photo doesn't fit — e.g. swap `defect` to a different file below.
 import hero from '../images/AdobeStock_841628933.jpeg';
 import homeBand from '../images/AdobeStock_53074457.jpeg';
-import about from '../images/AdobeStock_1139008987.jpeg';
+import about from '../images/hassan-desk.jpg';
 import aboutSecondary from '../images/AdobeStock_2120287720.jpeg';
 import expertWitness from '../images/AdobeStock_57580451.jpeg';
 import expertSecondary from '../images/AdobeStock_956537697.jpeg';

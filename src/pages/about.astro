@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/PageHeader.astro';
-import Credentials from '../components/Credentials.astro';
 import CtaBanner from '../components/CtaBanner.astro';
 import { site } from '../data/site';
 import { siteImages } from '../data/siteImages';
@@ -44,7 +43,7 @@ const memberships = ['American Society of Civil Engineers (ASCE)', 'Lean Constru
   <section class="bg-white py-20">
     <div class="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
       <div class="rounded-xl overflow-hidden shadow-card">
-        <Image src={siteImages.about} alt="A construction professional reviewing project documentation" class="w-full h-full object-cover aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5]" width={800} height={1000} sizes="(min-width: 1024px) 42vw, 100vw" loading="lazy" />
+        <Image src={siteImages.about} alt="Dr. Hassan at his desk reviewing project documents" class="w-full h-full object-cover aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5]" width={864} height={1080} sizes="(min-width: 1024px) 42vw, 100vw" loading="lazy" />
       </div>
       <div>
         <span class="eyebrow">Since July 2012</span>
@@ -59,11 +58,25 @@ const memberships = ['American Society of Civil Engineers (ASCE)', 'Lean Constru
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" /></svg>
           View Curriculum Vitae
         </a>
+        <div class="mt-10">
+          <div class="text-sm font-semibold uppercase tracking-wide text-slate-500 mb-4">At a glance</div>
+          <div class="grid grid-cols-2 gap-4">
+            {[
+              ['45 years', 'Construction management experience'],
+              ['Ph.D.', 'Construction management, 2012'],
+              ['P.E.', 'Licensed in Virginia & Texas'],
+              ['18 years', 'Expert witness testimony'],
+            ].map(([stat, label]) => (
+              <div class="rounded-lg bg-slate-50 border border-slate-200 p-5">
+                <div class="font-display font-bold text-3xl md:text-4xl text-ink leading-tight mb-2">{stat}</div>
+                <div class="text-sm text-slate-600">{label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   </section>
-
-  <Credentials />
 
   <!-- Education + Licensure -->
   <section class="bg-slate-50 py-20">
@@ -137,6 +150,9 @@ const memberships = ['American Society of Civil Engineers (ASCE)', 'Lean Constru
             <span class="area-tag">{s}</span>
           ))}
         </div>
+        <p class="text-slate-600 mt-6">
+          From pre-design through closeout, these are the areas where project disputes most often begin — and where the record most often decides them.
+        </p>
       </div>
       <div class="rounded-xl overflow-hidden shadow-card">
         <Image src={siteImages.aboutSecondary} alt="Structural and engineering drawings under review" class="w-full h-full object-cover aspect-[4/3]" width={900} height={680} sizes="(min-width: 1024px) 45vw, 100vw" loading="lazy" />

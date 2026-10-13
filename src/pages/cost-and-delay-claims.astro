@@ -32,7 +32,7 @@ const related = [
 >
   <PageHeader
     eyebrow="Practice Area"
-    title="Cost &amp; Delay Claims"
+    title="Cost & Delay Claims"
     sub="Independent cost and schedule analysis for construction overrun and delay disputes — turning contracts, schedules, and invoices into a clear, defensible picture of cost and time."
   />
 
@@ -51,6 +51,21 @@ const related = [
           <p class="text-slate-600 text-lg">
             The result is a clear opinion on what the work cost, what it should have cost, where the time went, and why — expressed in a form a judge, jury, or arbitrator can follow.
           </p>
+          <ul class="mt-6 space-y-3">
+            {[
+              'Every conclusion is built from the contract baseline, the actual schedule, and the invoices',
+              'Critical-path and time-impact analysis isolates what actually moved the completion date',
+              'Cost and schedule opinions in a form a judge, jury, or arbitrator can follow',
+            ].map((d) => (
+              <li class="feature-item">
+                <span class="text-slate-700">{d}</span>
+              </li>
+            ))}
+          </ul>
+          <a href={withBase('/blog/cost-and-delay-claims-time-impact-analysis')} class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary-dark">
+            Read: Time impact analysis and the measured-mile method
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </a>
         </div>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl">
@@ -75,7 +90,7 @@ const related = [
     </div>
   </section>
 
-  <FaqAccordion faqs={costDelayFaqs} heading="Cost &amp; Delay FAQs" />
+  <FaqAccordion faqs={costDelayFaqs} heading="Cost & Delay FAQs" />
 
   <CtaBanner
     heading="Facing a cost or delay dispute?"

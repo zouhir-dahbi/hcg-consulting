@@ -54,6 +54,17 @@ const related = [
           <p class="text-slate-600 text-lg">
             Defect matters turn on the difference between what was promised, what the code requires, and what was actually built. The analysis follows a consistent path so the opinion is defensible and clear.
           </p>
+          <ul class="mt-6 space-y-3">
+            {[
+              'A written opinion linking the defect to its probable cause',
+              'Building-code and standard-of-care analysis to support it',
+              'Cost-to-correct estimates in a form the court can follow',
+            ].map((d) => (
+              <li class="feature-item">
+                <span class="text-slate-700">{d}</span>
+              </li>
+            ))}
+          </ul>
         </div>
         <div class="rounded-xl overflow-hidden shadow-card">
           <Image src={siteImages.defect} alt="A construction site with structural and finish work in progress" class="w-full h-full object-cover aspect-[4/3]" width={900} height={680} sizes="(min-width: 1024px) 45vw, 100vw" loading="lazy" />
