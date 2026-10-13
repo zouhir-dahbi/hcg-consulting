@@ -1,0 +1,45 @@
+---
+interface Props {
+  heading?: string;
+  faqs: { q: string; a: string }[];
+  dark?: boolean;
+}
+const { heading = 'Common Questions', faqs, dark = false } = Astro.props;
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') },
+  })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+
+<section class:list={[dark ? 'bg-ink text-white' : 'bg-white', 'py-20']}>
+  <div class="container mx-auto px-4 max-w-3xl">
+    <h2 class:list={['font-display font-bold text-3xl md:text-4xl mb-10 text-center', dark ? 'text-white' : 'text-ink']}>{heading}</h2>
+    <div class="space-y-4" x-data="{ open: null }">
+      {faqs.map((faq, i) => (
+        <div class:list={[dark ? 'card-dark' : 'card', 'overflow-hidden']}>
+          <button
+            id={`faq-question-${i}`}
+            @click={`open = open === ${i} ? null : ${i}`}
+            class:list={['w-full flex items-center justify-between text-left font-semibold gap-4 p-5', dark ? 'text-white' : 'text-ink']}
+            x-bind:aria-expanded={`open === ${i}`}
+            aria-controls={`faq-answer-${i}`}
+          >
+            <span set:html={faq.q} />
+            <svg class="w-5 h-5 flex-shrink-0 transition-transform text-accent-dark" x-bind:class={`open === ${i} ? 'rotate-180' : ''`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+          <div id={`faq-answer-${i}`} x-show={`open === ${i}`} x-transition x-cloak role="region" aria-labelledby={`faq-question-${i}`}>
+            <p class:list={['px-5 pb-5', dark ? 'text-slate-300' : 'text-slate-600']} set:html={faq.a} />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

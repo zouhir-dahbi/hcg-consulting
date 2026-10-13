@@ -1,0 +1,188 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import { site } from '../data/site';
+import { contactFaqs } from '../data/faqs';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT || '';
+const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
+
+const roles = ['Attorney', 'Insurance carrier', 'General contractor', 'Owner / developer', 'Subcontractor', 'Other'];
+const matters = ['Construction defect', 'Cost & delay claim', 'Expert witness / testimony', 'Mediation', 'Consulting / other'];
+---
+
+<BaseLayout
+  title="Request a Consultation | Hassan Consulting Group"
+  description="Contact Dr. Hassan to discuss a construction defect, cost, or delay matter, expert witness retention, or mediation in Virginia, Washington, D.C., and Maryland."
+>
+  <PageHeader
+    center={true}
+    eyebrow="Contact"
+    title="Request a Consultation"
+    sub="Tell us about the project and the issue. We'll review the record and advise on fit, scope, and next steps — no obligation."
+  />
+
+  <section class="bg-white py-16">
+    <div class="container mx-auto px-4 grid lg:grid-cols-5 gap-10">
+      <!-- Contact details -->
+      <div class="lg:col-span-2">
+        <h2 class="font-display font-bold text-2xl text-ink mb-6">Get in touch</h2>
+        <ul class="space-y-5">
+          <li>
+            <div class="text-sm font-semibold uppercase tracking-wide text-slate-500 mb-1">Phone</div>
+            <a href={site.phoneHref} class="text-lg font-semibold text-primary hover:text-primary-dark">{site.phoneDisplay}</a>
+          </li>
+          <li>
+            <div class="text-sm font-semibold uppercase tracking-wide text-slate-500 mb-1">Email</div>
+            <a href={site.emailHref} class="text-lg font-semibold text-primary hover:text-primary-dark">{site.email}</a>
+          </li>
+          <li>
+            <div class="text-sm font-semibold uppercase tracking-wide text-slate-500 mb-1">Office</div>
+            <div class="text-slate-700">{site.address.line1}<br />{site.address.line2}</div>
+          </li>
+          <li>
+            <div class="text-sm font-semibold uppercase tracking-wide text-slate-500 mb-1">Hours</div>
+            <div class="text-slate-700">
+              {site.hours.map(([d, h]) => (
+                <div class="flex justify-between gap-6 max-w-xs"><span>{d}</span><span class="text-slate-500">{h}</span></div>
+              ))}
+            </div>
+          </li>
+        </ul>
+        <div class="mt-8 rounded-lg bg-slate-50 border border-slate-200 p-6">
+          <p class="text-sm text-slate-600 mb-2">Serving the D.C. metropolitan region</p>
+          <p class="text-sm text-slate-500">{site.serviceRegion}. Travel available for site visits in Virginia, Maryland, West Virginia, and Delaware.</p>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="lg:col-span-3">
+        <div x-data="consultForm()" x-init="init()" class="card p-6 sm:p-8">
+          <!-- Success -->
+          <div x-show="submitted" x-cloak class="text-center py-10">
+            <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-accent/15 flex items-center justify-center">
+              <svg class="w-7 h-7 text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            </div>
+            <h2 class="font-display font-bold text-2xl text-ink mb-2">Thank you</h2>
+            <p class="text-slate-600">Your message has been received. We'll follow up to discuss next steps.</p>
+          </div>
+
+          <!-- Error -->
+          <div x-show="error" x-cloak role="alert" class="mb-6 border border-red-200 bg-red-50 rounded-md p-4 text-sm text-red-700">
+            <span x-text="error"></span>
+          </div>
+
+          <form x-show="!submitted" x-cloak @submit.prevent="submitForm($event)" class="space-y-7">
+            <input type="hidden" name="cf-turnstile-response" />
+            <input type="hidden" name="source" value="hcg-consulting-site" />
+
+            <!-- honeypot -->
+            <div class="hidden" aria-hidden="true">
+              <label>Leave this field empty:<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label class="form-label" for="name">Full name <span class="text-accent-dark">*</span></label>
+                <input class="form-input" type="text" id="name" name="name" required autocomplete="name" />
+              </div>
+              <div>
+                <label class="form-label" for="email">Email <span class="text-accent-dark">*</span></label>
+                <input class="form-input" type="email" id="email" name="email" required autocomplete="email" />
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label class="form-label" for="phone">Phone</label>
+                <input class="form-input" type="tel" id="phone" name="phone" autocomplete="tel" />
+              </div>
+              <div>
+                <label class="form-label" for="organization">Organization / firm</label>
+                <input class="form-input" type="text" id="organization" name="organization" autocomplete="organization" />
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label class="form-label" for="role">I am a…</label>
+                <select class="form-input" id="role" name="role">
+                  <option value="">Select one</option>
+                  {roles.map((r) => <option>{r}</option>)}
+                </select>
+              </div>
+              <div>
+                <label class="form-label" for="matter">Matter type</label>
+                <select class="form-input" id="matter" name="matter">
+                  <option value="">Select one</option>
+                  {matters.map((m) => <option>{m}</option>)}
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="form-label" for="message">Tell us about the project and the issue <span class="text-accent-dark">*</span></label>
+              <textarea class="form-input" id="message" name="message" rows="5" required placeholder="A short description of the project, location, and the issue you'd like addressed."></textarea>
+            </div>
+
+            {turnstileKey && <div class="cf-turnstile" data-sitekey={turnstileKey}></div>}
+
+            <div class="border-t border-slate-200 pt-5">
+              <p class="text-xs text-slate-500 mb-4">
+                By submitting, you agree to our{' '}
+                <a href={`${base}/privacy`} class="underline underline-offset-2 hover:text-primary">Privacy Policy</a> and{' '}
+                <a href={`${base}/terms`} class="underline underline-offset-2 hover:text-primary">Terms of Use</a>. This form is for general inquiries and does not create an attorney–client or expert–client relationship.
+              </p>
+              <button type="submit" class="btn-accent w-full text-lg" :disabled="sending">
+                <span x-show="!sending">Send Message</span>
+                <span x-show="sending" x-cloak>Sending…</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FaqAccordion faqs={contactFaqs} heading="Before You Reach Out" />
+
+  <script is:inline define:vars={{ ENDPOINT: endpoint, TURNSTILE: turnstileKey }}>
+    window.consultForm = function consultForm() {
+      return {
+        submitted: false,
+        sending: false,
+        error: null,
+        init() {
+          if (TURNSTILE) {
+            window.addEventListener('load', () => {
+              if (window.turnstile && typeof window.turnstile.render === 'function') {
+                const el = document.querySelector('.cf-turnstile');
+                if (el) window.turnstile.render(el, { sitekey: TURNSTILE, callback: (token) => { const f = document.querySelector('input[name="cf-turnstile-response"]'); if (f) f.value = token; } });
+              }
+            });
+          }
+        },
+        async submitForm(event) {
+          if (!ENDPOINT) {
+            this.error = 'The online form is not available yet. Please call (703) 898-0204 or email us instead.';
+            return;
+          }
+          this.sending = true;
+          this.error = null;
+          const data = new FormData(event.target);
+          try {
+            const res = await fetch(ENDPOINT, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+            if (!res.ok) throw new Error('Form submission failed');
+            this.submitted = true;
+          } catch (err) {
+            this.error = 'Something went wrong sending your message. Please try again, or call us at (703) 898-0204.';
+          } finally {
+            this.sending = false;
+          }
+        },
+      };
+    };
+  </script>
+</BaseLayout>

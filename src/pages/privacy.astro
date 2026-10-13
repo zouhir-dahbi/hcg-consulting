@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { site } from '../data/site';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const updated = 'Effective date: [insert on publication]';
+---
+
+<BaseLayout
+  title="Privacy Policy | Hassan Consulting Group"
+  description="How Hassan Consulting Group collects, uses, and protects information you share through its website."
+>
+  <PageHeader eyebrow="Legal" title="Privacy Policy" sub={updated} />
+
+  <section class="bg-white py-16">
+    <div class="container mx-auto px-4 max-w-3xl article-content">
+      <p>
+        Hassan Consulting Group LLC ("<strong>we</strong>", "<strong>us</strong>") respects your privacy. This policy explains what information we collect when you use this website, how we use it, and the choices you have. It covers the website only and not the advice or services provided once an engagement is in place.
+      </p>
+
+      <h2>Information we collect</h2>
+      <p>We collect information you choose to provide, such as when you submit the contact or consultation form. This may include your name, email address, phone number, organization, and the details of your inquiry. We also automatically receive basic technical information such as your browser type, device, and general location, which helps us keep the site working and secure.</p>
+
+      <h2>How we use your information</h2>
+      <ul>
+        <li>To respond to your inquiries and requests for a consultation.</li>
+        <li>To contact you about matters you have asked us to look into.</li>
+        <li>To protect the site from abuse and to improve its performance.</li>
+        <li>To comply with legal obligations.</li>
+      </ul>
+
+      <h2>How we share information</h2>
+      <p>We do not sell your personal information. We share it only with service providers who help us operate the site (for example, hosting and form-handling providers), where necessary to respond to a legal request, or where required by law.</p>
+
+      <h2>Security</h2>
+      <p>We use reasonable administrative and technical safeguards to protect the information you share. No method of transmission over the Internet is completely secure, so we cannot guarantee absolute security.</p>
+
+      <h2>Your choices</h2>
+      <p>You may opt out of non-essential communications by following the instructions in those messages. You can also request access to, correction of, or deletion of the personal information we hold about you by contacting us.</p>
+
+      <h2>Contact</h2>
+      <p>Questions about this policy can be directed to {site.name} by phone at <a href={site.phoneHref}>{site.phoneDisplay}</a> or by email at <a href={site.emailHref}>{site.email}</a>.</p>
+
+      <hr />
+      <p class="text-sm text-slate-500">This policy is a general template. Review it with counsel and update the effective date, data specifics, and any region-specific requirements (such as CCPA/CPRA or state laws) before publishing.</p>
+    </div>
+  </section>
+</BaseLayout>

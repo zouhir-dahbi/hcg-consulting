@@ -1,0 +1,95 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import FaqAccordion from '../../components/FaqAccordion.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { geoAreas } from '../../data/geoAreas';
+import { practiceAreas } from '../../data/practiceAreas';
+import { siteImages } from '../../data/siteImages';
+
+export const getStaticPaths = async () =>
+  geoAreas.map((g) => ({ params: { jurisdiction: g.slug }, props: { geo: g } }));
+
+const { geo } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (h: string) => (h.startsWith('http') ? h : `${base}${h}`);
+const img = siteImages.geo[geo.slug];
+const others = geoAreas.filter((g) => g.slug !== geo.slug);
+
+const faqs = [
+  { q: `Are you available for construction matters in ${geo.name}?`, a: `Yes. I provide expert witness and construction-management services in ${geo.name} as part of covering the broader Washington, D.C. metropolitan region. ${geo.lead}` },
+  { q: 'What do you need to begin?', a: 'A brief description of the project and the issue, plus the key documents — the complaint or dispute summary, contracts, and any plans or permits. I will tell you exactly what I need after the first review.' },
+  { q: 'Do you handle both commercial and residential projects?', a: 'Yes. My experience spans commercial and residential construction across the region, and I adapt the analysis to the type of project and the issues in dispute.' },
+];
+---
+
+<BaseLayout
+  title={geo.metaTitle}
+  description={geo.description}
+>
+  <PageHeader
+    eyebrow={geo.name}
+    title={geo.title}
+    sub={geo.lead}
+  />
+
+  <section class="bg-white py-20">
+    <div class="container mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-10 items-center mb-12">
+        <div class="order-2 lg:order-1">
+          <span class="eyebrow">Qualifications in {geo.name}</span>
+          <h2 class="font-display font-bold text-3xl md:text-4xl text-ink mb-6">Grounded in this jurisdiction</h2>
+          <ul class="space-y-4">
+            {geo.qualifications.map((q) => (
+              <li class="feature-item">
+                <span class="text-slate-700">{q}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="order-1 lg:order-2 rounded-xl overflow-hidden shadow-card">
+          {img && (
+            <Image src={img} alt={`Construction work relevant to matters in ${geo.name}`} class="w-full h-full object-cover aspect-[4/3]" width={900} height={680} sizes="(min-width: 1024px) 45vw, 100vw" loading="lazy" />
+          )}
+        </div>
+      </div>
+
+      <div class="rounded-lg bg-slate-50 border border-slate-200 p-8">
+        <h3 class="font-display font-semibold text-xl text-ink mb-4">Areas served in {geo.name}</h3>
+        <div class="flex flex-wrap gap-3">
+          {geo.cities.map((c) => (
+            <span class="area-tag">{c}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 py-16">
+    <div class="container mx-auto px-4 text-center max-w-3xl mx-auto">
+      <h2 class="font-display font-bold text-2xl md:text-3xl text-ink mb-8">How I can help in {geo.name}</h2>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href={withBase('/expert-witness')} class="area-tag text-base">Expert Witness</a>
+        {practiceAreas.map((p) => (
+          <a href={withBase(`/${p.slug}`)} class="area-tag text-base">{p.title}</a>
+        ))}
+      </div>
+      <div class="mt-10">
+        <h3 class="text-sm font-semibold uppercase tracking-wide text-slate-500 mb-4">Other jurisdictions</h3>
+        <div class="flex flex-wrap justify-center gap-4">
+          {others.map((g) => (
+            <a href={withBase(`/expert-witness/${g.slug}`)} class="area-tag text-base">{g.name}</a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FaqAccordion faqs={faqs} heading={`${geo.name} Expert Witness FAQs`} />
+
+  <CtaBanner
+    heading={`Discuss your matter in ${geo.name}.`}
+    sub="Share a brief about the project and the issue. We'll review the record and advise on fit, scope, and next steps."
+  />
+</BaseLayout>

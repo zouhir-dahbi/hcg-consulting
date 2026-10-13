@@ -1,0 +1,83 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { mediationFaqs } from '../data/faqs';
+import { siteImages } from '../data/siteImages';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (h: string) => (h.startsWith('http') ? h : `${base}${h}`);
+
+const steps = [
+  ['Pre-mediation briefing', 'Each side shares its position and documents in advance so the session is efficient.'],
+  ['Joint session', 'A facilitated opening in which each party states its position and interests.'],
+  ['Caucus', 'Private, confidential sessions to explore options and test possible outcomes.'],
+  ['Settlement', 'A mutually acceptable resolution — often avoiding the cost and risk of trial.'],
+];
+
+const related = [
+  ['Construction Defect', '/construction-defect'],
+  ['Cost &amp; Delay Claims', '/cost-and-delay-claims'],
+  ['Expert Witness', '/expert-witness'],
+];
+---
+
+<BaseLayout
+  title="Construction Mediation — Certified Mediator, Virginia & Washington, D.C. | Hassan Consulting Group"
+  description="Neutrally facilitating resolution of construction disputes as a Supreme Court of Virginia certified mediator, with deep technical grounding in construction management for owners, contractors, and counsel."
+>
+  <PageHeader
+    eyebrow="Practice Area"
+    title="Construction Mediation"
+    sub="A certified mediator who also understands the work — bringing construction-management depth to the negotiating table for owners, general contractors, and counsel."
+  />
+
+  <section class="bg-white py-20">
+    <div class="container mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-10 items-center mb-12">
+        <div>
+          <span class="eyebrow">A neutral with technical depth</span>
+          <h2 class="font-display font-bold text-3xl md:text-4xl text-ink mb-5">Resolution that understands the work</h2>
+          <p class="text-slate-600 text-lg mb-4">
+            As a Supreme Court of Virginia certified mediator (J&amp;DR, GDR) and member of the Virginia Mediation Network, I help construction parties reach resolution before a dispute hardens into a trial.
+          </p>
+          <p class="text-slate-600 text-lg">
+            The difference is background: having spent 45 years in construction management and 18 years as an expert, I can follow the technical detail of a defect, cost, or schedule dispute — and keep the conversation on what the parties can actually control.
+          </p>
+        </div>
+        <div class="rounded-xl overflow-hidden shadow-card">
+          <Image src={siteImages.mediation} alt="Parties and counsel in a meeting discussing resolution" class="w-full h-full object-cover aspect-[4/3]" width={900} height={680} sizes="(min-width: 1024px) 45vw, 100vw" loading="lazy" />
+        </div>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl">
+        {steps.map(([t, d], i) => (
+          <div class="card process-card p-6">
+            <div class="step-number mb-4">{i + 1}</div>
+            <h3 class="font-semibold text-ink mb-2">{t}</h3>
+            <p class="text-sm text-slate-600">{d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 py-16">
+    <div class="container mx-auto px-4 text-center max-w-3xl mx-auto">
+      <h2 class="font-display font-bold text-2xl md:text-3xl text-ink mb-4">Related services</h2>
+      <div class="flex flex-wrap justify-center gap-4">
+        {related.map(([t, h]) => (
+          <a href={withBase(h)} class="area-tag text-base">{t}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FaqAccordion faqs={mediationFaqs} heading="Mediation FAQs" />
+
+  <CtaBanner
+    heading="Consider mediation before it becomes a trial."
+    sub="A confidential, structured process that often resolves disputes faster and at lower cost. Reach out to discuss whether it fits your matter."
+  />
+</BaseLayout>

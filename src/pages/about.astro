@@ -1,0 +1,151 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Credentials from '../components/Credentials.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { site } from '../data/site';
+import { siteImages } from '../data/siteImages';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (h: string) => (h.startsWith('http') ? h : `${base}${h}`);
+
+const education = [
+  ['Ph.D., 2012', 'Civil, Environmental & Infrastructure Engineering — Construction Management', 'George Mason University, Virginia'],
+  ['M.S., 1982', 'Civil Engineering — Structural Analysis', 'City College of New York'],
+  ['B.S., 1977', 'Civil Engineering', 'Cairo University, Egypt'],
+];
+
+const teaching = [
+  ['George Mason University', '2009 – 2015', 'Adjunct Professor — Construction Systems & Management, BIM, Reinforced Concrete Analysis & Design, Strength of Materials.'],
+  ['DeVry University', '2011 – 2015', 'Adjunct Professor — Management Information Systems, Sustainability, Global Outsourcing, Project Management.'],
+  ['Northern Virginia Community College', '2000 – 2011', 'Adjunct Professor — Engineering Economics, Introduction to Engineering, Structures for Architects, Mechanics of Materials.'],
+];
+
+const specialties = [
+  'Engineering design', 'Building codes', 'Infrastructure engineering', 'Reinforced concrete',
+  'Steel structures', 'Bridges', 'Foundations, piers & abutments', 'Soil & geotechnical analysis',
+];
+
+const memberships = ['American Society of Civil Engineers (ASCE)', 'Lean Construction Institute (LCI)', 'Project Management Institute (PMI)', 'Virginia Mediation Network'];
+---
+
+<BaseLayout
+  title="About Dr. Mohamed Hassan, PhD, P.E. | Hassan Consulting Group"
+  description="Dr. Mohamed E. Hassan brings 45 years of construction management and engineering experience, a Ph.D. in construction management, P.E. licensure in Virginia and Texas, and 18 years of expert witness experience to Hassan Consulting Group."
+>
+  <PageHeader
+    eyebrow="About"
+    title="Meet Dr. Mohamed E. Hassan"
+    sub="Principal of Hassan Consulting Group — a construction expert witness with 45 years in the field and a Ph.D. in construction management."
+  />
+
+  <!-- Bio -->
+  <section class="bg-white py-20">
+    <div class="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
+      <div class="rounded-xl overflow-hidden shadow-card">
+        <Image src={siteImages.about} alt="A construction professional reviewing project documentation" class="w-full h-full object-cover aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5]" width={800} height={1000} sizes="(min-width: 1024px) 42vw, 100vw" loading="lazy" />
+      </div>
+      <div>
+        <span class="eyebrow">Since July 2012</span>
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-ink mb-5">{site.person.name}</h2>
+        <p class="text-slate-600 mb-4 text-lg">
+          Hassan Consulting Group was established in July 2012 to serve the greater Washington metropolitan area. The practice focuses on a simple value proposition: help clients achieve the highest quality outcome, on time and within budget, and eliminate waste.
+        </p>
+        <p class="text-slate-600 mb-6">
+          Dr. Hassan's work sits at the intersection of deep construction-management practice and advanced engineering education. That combination — 45 years building projects and 18 years explaining them to courts — is the foundation of the expert and mediation services offered here.
+        </p>
+        <a href={withBase('/cv/dr-mohamed-hassan-cv.pdf')} target="_blank" rel="noopener" class="btn-primary inline-flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" /></svg>
+          View Curriculum Vitae
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Credentials />
+
+  <!-- Education + Licensure -->
+  <section class="bg-slate-50 py-20">
+    <div class="container mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-10">
+        <div>
+          <h2 class="font-display font-bold text-2xl md:text-3xl text-ink mb-8">Education</h2>
+          <div class="space-y-5">
+            {education.map(([deg, field, school]) => (
+              <div class="card p-6">
+                <div class="text-accent-dark font-semibold text-sm uppercase tracking-wide mb-1">{deg}</div>
+                <div class="font-display font-semibold text-lg text-ink">{field}</div>
+                <div class="text-slate-600">{school}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <h2 class="font-display font-bold text-2xl md:text-3xl text-ink mb-8">Licensure &amp; Court Qualifications</h2>
+          <ul class="space-y-4">
+            {[
+              'Licensed Professional Engineer (P.E.) — Virginia and Texas',
+              'Class “A” Contractor license — Virginia and Washington, D.C.',
+              'Admitted in the Virginia and Washington, D.C. court systems',
+              'Supreme Court of Virginia mediator certification (J&DR, GDR)',
+            ].map((q) => (
+              <li class="feature-item">
+                <span class="text-slate-700">{q}</span>
+              </li>
+            ))}
+          </ul>
+          <h3 class="font-display font-semibold text-lg text-ink mt-10 mb-4">Professional Memberships</h3>
+          <div class="flex flex-wrap gap-3">
+            {memberships.map((m) => (
+              <span class="area-tag">{m}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Teaching legacy -->
+  <section class="bg-white py-20">
+    <div class="container mx-auto px-4">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="eyebrow">Teaching legacy</span>
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-ink mb-4">A Decade in the Classroom</h2>
+        <p class="text-slate-600 text-lg">A sustained teaching record that sharpened the analytical rigor now brought to every case.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {teaching.map(([school, years, focus]) => (
+          <div class="card p-7">
+            <div class="text-accent-dark font-semibold text-sm mb-1">{years}</div>
+            <h3 class="font-display font-semibold text-xl text-ink mb-3">{school}</h3>
+            <p class="text-sm text-slate-600">{focus}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Specialties + secondary image -->
+  <section class="bg-slate-50 py-20">
+    <div class="container mx-auto px-4 grid lg:grid-cols-2 gap-10 items-center">
+      <div>
+        <span class="eyebrow">Areas of technical strength</span>
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-ink mb-6">Specialty Focus</h2>
+        <div class="flex flex-wrap gap-3">
+          {specialties.map((s) => (
+            <span class="area-tag">{s}</span>
+          ))}
+        </div>
+      </div>
+      <div class="rounded-xl overflow-hidden shadow-card">
+        <Image src={siteImages.aboutSecondary} alt="Structural and engineering drawings under review" class="w-full h-full object-cover aspect-[4/3]" width={900} height={680} sizes="(min-width: 1024px) 45vw, 100vw" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner
+    heading="Work with an expert who has built, analyzed, and testified on projects like yours."
+    sub="Reach out to discuss your matter and how construction-management depth can support it."
+  />
+</BaseLayout>

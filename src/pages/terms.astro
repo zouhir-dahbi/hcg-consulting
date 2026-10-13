@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const updated = 'Effective date: [insert on publication]';
+---
+
+<BaseLayout
+  title="Terms of Use | Hassan Consulting Group"
+  description="Terms governing use of the Hassan Consulting Group website."
+>
+  <PageHeader eyebrow="Legal" title="Terms of Use" sub={updated} />
+
+  <section class="bg-white py-16">
+    <div class="container mx-auto px-4 max-w-3xl article-content">
+      <p>
+        By accessing this website, you agree to these Terms of Use. If you do not agree, please do not use the site.
+      </p>
+
+      <h2>General information — not professional advice</h2>
+      <p>The content on this website is provided for general informational purposes only. It does not constitute legal, engineering, or construction advice, and it does not create an attorney–client, engineer–client, or expert–client relationship with Hassan Consulting Group. You should not rely on it as a substitute for advice from a qualified professional about your specific situation.</p>
+
+      <h2>No attorney–client or expert–client relationship</h2>
+      <p>Submitting a form or contacting us does not, by itself, retain us as an expert witness, engineer, or consultant, and does not create any professional relationship. Any engagement is established only through a written agreement or explicit mutual confirmation of scope.</p>
+
+      <h2>Confidentiality</h2>
+      <p>Please do not send confidential or legally privileged material through the public contact form. If you are working with counsel and intend to engage us, follow your counsel's guidance on how to share sensitive materials securely.</p>
+
+      <h2>Intellectual property</h2>
+      <p>The text, design, and layout of this site are the property of Hassan Consulting Group LLC and may not be reproduced without permission, except for personal, non-commercial use with attribution.</p>
+
+      <h2>External links</h2>
+      <p>This site may contain links to third-party websites. We are not responsible for the content or practices of those sites.</p>
+
+      <h2>Limitation of liability</h2>
+      <p>To the maximum extent permitted by law, Hassan Consulting Group is not liable for any loss or damage arising from your use of this website or reliance on its content.</p>
+
+      <h2>Changes</h2>
+      <p>We may update these terms at any time. The current version is always posted on this page.</p>
+
+      <hr />
+      <p class="text-sm text-slate-500">This is a general template. Review with counsel and tailor the disclaimers, governing law, and effective date before publishing.</p>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,113 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { defectFaqs } from '../data/faqs';
+import { siteImages } from '../data/siteImages';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (h: string) => (h.startsWith('http') ? h : `${base}${h}`);
+
+const covers = [
+  ['Review the governing documents', 'The contract, plans, and specifications that define how the work was required to be done.'],
+  ['Interpret the building codes', 'The applicable codes and standards the work is required to meet.'],
+  ['Inspect the work', 'A field visit to observe the condition of the work and the subject area.'],
+  ['Identify cause and extent', 'An opinion on the probable cause and the scope of the deficiency.'],
+  ['Quantify the correction', 'Cost estimates for the work needed to correct the identified defect.'],
+];
+
+const categories = [
+  ['Water Intrusion', 'Roofing, envelope, flashing, and drainage failures that let water into a structure.'],
+  ['Structural & Foundation', 'Issues with foundations, load-bearing elements, and structural integrity.'],
+  ['Envelope & Weather-Tightness', 'Walls, windows, and exterior systems that fail to keep weather out.'],
+  ['Finishes & MEP', 'Deficient finishes, mechanical, electrical, and plumbing work.'],
+  ['Code Compliance', 'Whether the completed work conforms to applicable building codes.'],
+  ['Cost to Correct', 'Estimating the cost of the work required to bring the project into conformance.'],
+];
+
+const related = [
+  ['Cost & Delay Claims', '/cost-and-delay-claims'],
+  ['Construction Mediation', '/mediation'],
+  ['Expert Witness', '/expert-witness'],
+];
+---
+
+<BaseLayout
+  title="Construction Defect Expert Witness in Virginia & Washington, D.C. | Hassan Consulting Group"
+  description="Construction defect expert witness in Virginia and the Washington, D.C. metro. Defect identification, building-code analysis, cause evaluation, and cost-to-correct estimates for commercial and residential projects."
+>
+  <PageHeader
+    eyebrow="Practice Area"
+    title="Construction Defect Expert"
+    sub="Identifying defects, tracing their cause, and quantifying the cost to correct work that fails to meet the contract, the plans, or the code — for commercial and residential projects across Virginia, Washington, D.C., and Maryland."
+  />
+
+  <!-- What an engagement covers -->
+  <section class="bg-white py-20">
+    <div class="container mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-10 items-center mb-12">
+        <div>
+          <span class="eyebrow">What an engagement covers</span>
+          <h2 class="font-display font-bold text-3xl md:text-4xl text-ink mb-5">A structured path from complaint to opinion</h2>
+          <p class="text-slate-600 text-lg">
+            Defect matters turn on the difference between what was promised, what the code requires, and what was actually built. The analysis follows a consistent path so the opinion is defensible and clear.
+          </p>
+        </div>
+        <div class="rounded-xl overflow-hidden shadow-card">
+          <Image src={siteImages.defect} alt="A construction site with structural and finish work in progress" class="w-full h-full object-cover aspect-[4/3]" width={900} height={680} sizes="(min-width: 1024px) 45vw, 100vw" loading="lazy" />
+        </div>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl">
+        {covers.map(([t, d], i) => (
+          <div class="card p-6">
+            <div class="step-number mb-4">{i + 1}</div>
+            <h3 class="font-semibold text-ink mb-2">{t}</h3>
+            <p class="text-sm text-slate-600">{d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Common categories -->
+  <section class="bg-slate-50 py-20">
+    <div class="container mx-auto px-4">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="eyebrow">Common matters</span>
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-ink mb-4">Defect Categories We Address</h2>
+        <p class="text-slate-600 text-lg">From single-family homes to commercial buildings.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {categories.map(([t, d]) => (
+          <div class="card p-6">
+            <h3 class="font-semibold text-ink mb-2">{t}</h3>
+            <p class="text-sm text-slate-600">{d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="bg-white py-16">
+    <div class="container mx-auto px-4 text-center max-w-3xl mx-auto">
+      <h2 class="font-display font-bold text-2xl md:text-3xl text-ink mb-8">Related services</h2>
+      <div class="flex flex-wrap justify-center gap-4">
+        {related.map(([t, h]) => (
+          <a href={withBase(h)} class="area-tag text-base">{t}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FaqAccordion faqs={defectFaqs} heading="Construction Defect FAQs" />
+
+  <CtaBanner
+    heading="Concerned about a construction defect?"
+    sub="Send a brief description of the project and the concern. We'll review the record and advise on next steps."
+  />
+</BaseLayout>
+
+<script define:vars={{}}></script>

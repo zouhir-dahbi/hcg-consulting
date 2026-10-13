@@ -1,0 +1,84 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { costDelayFaqs } from '../data/faqs';
+import { siteImages } from '../data/siteImages';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (h: string) => (h.startsWith('http') ? h : `${base}${h}`);
+
+const analyzes = [
+  ['Baseline vs. actuals', 'The contract baseline schedule and budget set against what actually happened on the project.'],
+  ['Critical-path analysis', 'Schedule analysis to isolate the delay events that actually moved the completion date.'],
+  ['Cost overruns', 'Cost analysis of completed work, overruns, and the value of the work performed.'],
+  ['Cost estimates', 'Estimates for the remaining or corrective work to support valuation and performance opinions.'],
+  ['Delay causation', 'The relationship between claimed delay and excusable delay, and its impact on the critical path.'],
+  ['Recovery & damages', 'A defensible framework for framing cost and schedule exposure for the parties and the court.'],
+];
+
+const related = [
+  ['Construction Defect', '/construction-defect'],
+  ['Construction Mediation', '/mediation'],
+  ['Expert Witness', '/expert-witness'],
+];
+---
+
+<BaseLayout
+  title="Construction Cost & Delay Claims — Expert Analysis & Estimates | Hassan Consulting Group"
+  description="Expert cost analysis, estimating, and schedule (critical-path) analysis for construction cost overruns, delay claims, and project-performance disputes in Virginia, Washington, D.C., and Maryland."
+>
+  <PageHeader
+    eyebrow="Practice Area"
+    title="Cost &amp; Delay Claims"
+    sub="Independent cost and schedule analysis for construction overrun and delay disputes — turning contracts, schedules, and invoices into a clear, defensible picture of cost and time."
+  />
+
+  <section class="bg-white py-20">
+    <div class="container mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-10 items-center mb-12">
+        <div class="order-2 lg:order-1 rounded-xl overflow-hidden shadow-card">
+          <Image src={siteImages.costDelay} alt="Project cost and schedule documents being reviewed" class="w-full h-full object-cover aspect-[4/3]" width={900} height={680} sizes="(min-width: 1024px) 45vw, 100vw" loading="lazy" />
+        </div>
+        <div class="order-1 lg:order-2">
+          <span class="eyebrow">What we analyze</span>
+          <h2 class="font-display font-bold text-3xl md:text-4xl text-ink mb-5">When cost and time are in dispute</h2>
+          <p class="text-slate-600 text-lg mb-4">
+            Cost and schedule disputes are only as strong as the analysis behind them. I work from the contract baseline, the actual schedule and invoices, and the delay events in between.
+          </p>
+          <p class="text-slate-600 text-lg">
+            The result is a clear opinion on what the work cost, what it should have cost, where the time went, and why — expressed in a form a judge, jury, or arbitrator can follow.
+          </p>
+        </div>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl">
+        {analyzes.map(([t, d]) => (
+          <div class="card p-6">
+            <h3 class="font-semibold text-ink mb-2">{t}</h3>
+            <p class="text-sm text-slate-600">{d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 py-16">
+    <div class="container mx-auto px-4 text-center max-w-3xl mx-auto">
+      <h2 class="font-display font-bold text-2xl md:text-3xl text-ink mb-4">Related services</h2>
+      <div class="flex flex-wrap justify-center gap-4">
+        {related.map(([t, h]) => (
+          <a href={withBase(h)} class="area-tag text-base">{t}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FaqAccordion faqs={costDelayFaqs} heading="Cost &amp; Delay FAQs" />
+
+  <CtaBanner
+    heading="Facing a cost or delay dispute?"
+    sub="Share the contract, schedule, and the issue. We'll assess whether the record supports your position and what's needed to prove it."
+  />
+</BaseLayout>

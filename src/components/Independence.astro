@@ -1,0 +1,35 @@
+---
+interface Props {
+  dark?: boolean;
+}
+const { dark = false } = Astro.props;
+
+const points = [
+  ['An independent, evaluative role', 'Our function is strictly evaluative. We do not perform the repair work, hold no interest in the claim’s outcome, and render only the opinion the record supports.'],
+  ['Measured against published standards', 'Opinions are framed against the applicable building codes, the contract and plans, and recognized industry standards — IRC, IBC, ASTM, and ACI — so they hold up under cross-examination.'],
+  ['Retained by both sides, one standard', 'We work for plaintiffs and defendants alike. The analysis follows the evidence and the applicable standard of care, not the party that retained us.'],
+];
+---
+
+<section class:list={[dark ? 'bg-ink text-white' : 'bg-white', 'py-20']}>
+  <div class="container mx-auto px-4">
+    <div class="max-w-2xl mb-12">
+      <span class:list={['eyebrow', dark && 'eyebrow-light']}>Why counsel rely on us</span>
+      <h2 class:list={['font-display font-bold text-3xl md:text-4xl mb-4', dark ? 'text-white' : 'text-ink']}>
+        Independent opinion, built to withstand scrutiny
+      </h2>
+      <p class:list={['text-lg', dark ? 'text-slate-300' : 'text-slate-600']}>
+        Credibility is the product. Every opinion is grounded, documented, and defensible — because it has to be.
+      </p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      {points.map(([t, d]) => (
+        <div class:list={[dark ? 'card-dark' : 'card', 'p-7']}>
+          <svg class:list={['w-8 h-8 mb-4', dark ? 'text-accent-light' : 'text-accent-dark']} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M9 12l2 2 4-4" /></svg>
+          <h3 class:list={['font-semibold text-lg mb-2', dark ? 'text-white' : 'text-ink']}>{t}</h3>
+          <p class:list={['text-sm', dark ? 'text-slate-400' : 'text-slate-600']}>{d}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

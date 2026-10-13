@@ -1,0 +1,17 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  sub?: string;
+  center?: boolean;
+}
+const { eyebrow, title, sub, center = false } = Astro.props;
+---
+
+<section class="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white border-b border-slate-200">
+  <div class:list={['container mx-auto px-4 py-14 lg:py-16', center && 'text-center']}>
+    {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+    <h1 class="font-display font-bold text-4xl md:text-5xl text-ink mb-4 leading-tight">{title}</h1>
+    {sub && <p class:list={['text-slate-600 text-lg max-w-2xl', center && 'mx-auto']}>{sub}</p>}
+  </div>
+</section>

@@ -1,0 +1,137 @@
+---
+import { getImage } from 'astro:assets';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: ImageMetadata;
+  jsonLd?: Record<string, unknown>[];
+}
+const { title, description, image, jsonLd = [] } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const ogImage = image ? await getImage({ src: image, width: 1200, height: 630, fit: 'cover' }) : undefined;
+const ogImageUrl = new URL(ogImage?.src ?? `${base}/og-image.png`, Astro.site ?? Astro.url.origin).href;
+const ogImageAlt = image ? description : `${site.name} — Construction Expert Witness`;
+const logoUrl = new URL(`${base}/brand/hcg-logo-lockup.svg`, Astro.site ?? Astro.url.origin).href;
+
+const serviceLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: site.name,
+  legalName: site.legalName,
+  description,
+  url: Astro.site?.href,
+  image: ogImageUrl,
+  logo: logoUrl,
+  telephone: site.phoneHref.replace('tel:', ''),
+  email: site.email,
+  areaServed: [
+    { '@type': 'State', name: 'Virginia' },
+    { '@type': 'City', name: 'Washington, D.C.' },
+    { '@type': 'State', name: 'Maryland' },
+  ],
+  address: {
+    '@type': 'PostalAddress',
+    postalCode: 20168,
+    addressLocality: 'Haymarket',
+    addressRegion: 'VA',
+    addressCountry: 'US',
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '08:00',
+      closes: '18:00',
+    },
+  ],
+  founder: {
+    '@type': 'Person',
+    name: site.person.name,
+    jobTitle: 'Construction Expert Witness',
+    alumniOf: [
+      { '@type': 'CollegeOrUniversity', name: 'George Mason University' },
+      { '@type': 'CollegeOrUniversity', name: 'City College of New York' },
+      { '@type': 'CollegeOrUniversity', name: 'Cairo University' },
+    ],
+    knowsAbout: [
+      'Construction Management',
+      'Construction Defect Analysis',
+      'Building Code Compliance',
+      'Cost and Delay Claims',
+      'Construction Mediation',
+    ],
+    hasCredential: [
+      { '@type': 'EducationalOccupationalCredential', credentialCategory: 'degree', name: 'Ph.D., Construction Management' },
+    ],
+  },
+};
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.person.name,
+  jobTitle: site.person.title,
+  worksFor: { '@type': 'Organization', name: site.legalName },
+  telephone: site.phoneHref.replace('tel:', ''),
+  email: site.email,
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={Astro.url} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(serviceLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(personLd)} />
+    {jsonLd.map((block) => (
+      <script type="application/ld+json" set:html={JSON.stringify(block)} />
+    ))}
+
+    <link rel="icon" type="image/svg+xml" sizes="any" href={`${base}/favicon.svg`} />
+    <link rel="icon" type="image/x-icon" href={`${base}/favicon.ico`} />
+    <link rel="apple-touch-icon" sizes="180x180" href={`${base}/apple-touch-icon.png`} />
+    <link rel="manifest" href={`${base}/site.webmanifest`} />
+    <meta name="theme-color" content="#121A2C" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import Independence from '../components/Independence.astro';
+import { site } from '../data/site';
+import { geoAreas } from '../data/geoAreas';
+import { expertWitnessFaqs } from '../data/faqs';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (h: string) => (h.startsWith('http') ? h : `${base}${h}`);
+
+const scope = [
+  ['Review of the pleadings', 'Review of the court complaint and the answer to the complaint to frame the issues in dispute.'],
+  ['Collection and analysis of the record', 'Contractual agreements, architecture and engineering plans, government permits and inspections, project photos and video, and email correspondence.'],
+  ['Site investigation', 'A field visit to the project site to evaluate existing conditions and confirm what was actually built.'],
+  ['Building-code analysis', 'Analysis and evaluation of the applicable building codes and project standards.'],
+  ['Cost estimates', 'Preparation of cost estimates and cost analysis for completed work and for work needed to correct deficiencies.'],
+  ['Expert Evaluation Report', 'Preparation of a clear, court-ready expert report presenting findings and opinion.'],
+  ['Depositions and hearings', 'Attendance at all required depositions and court hearings.'],
+  ['Trial preparation', 'Coordination with the client and counsel in preparation for final hearings and trial.'],
+];
+
+const opines = [
+  ['Construction defects & performance', 'Whether work conforms to the contract, plans, specifications, and applicable building codes.'],
+  ['Cost claims', 'Cost analysis and estimates for completed work, overruns, and the cost to correct deficiencies.'],
+  ['Delay claims', 'Schedule and critical-path analysis for delay disputes.'],
+  ['Code compliance', 'Interpretation of building codes and assessment of compliance on the subject project.'],
+];
+
+const matters = [
+  ['Gazach v. Carlton Association', 'Washington, D.C.'],
+  ['Alkhasaji v. State Farm Insurance', 'Virginia'],
+  ['The Writers v. Bristol Springs Custom Homes', 'West Virginia'],
+  ['Douglas Builders v. The Marshalls', 'Delaware'],
+];
+---
+
+<BaseLayout
+  title="Construction Expert Witness — Defect, Cost & Delay Testimony | Hassan Consulting Group"
+  description="Construction expert witness services: document review, site investigation, building-code analysis, cost estimates, expert reports, depositions, and testimony. Admitted in the Virginia and Washington, D.C. court systems."
+>
+  <PageHeader
+    eyebrow="Expert Witness"
+    title="Construction Expert Witness"
+    sub="Independent expert opinions and testimony for construction dispute matters in Virginia, Washington, D.C., and Maryland — from the first document review to the stand."
+  />
+
+  <!-- Lead + CV -->
+  <section class="bg-white py-20">
+    <div class="container mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="eyebrow">18 years testifying</span>
+          <h2 class="font-display font-bold text-3xl md:text-4xl text-ink mb-5">Opinions grounded in the field, presented for the court</h2>
+          <p class="text-slate-600 mb-4 text-lg">
+            Over the past 18 years, I have testified and prepared expert witness reports for disputed construction matters in Virginia, the District of Columbia, West Virginia, and Delaware.
+          </p>
+          <p class="text-slate-600 mb-8">
+            Every opinion is built on the same foundation: a careful review of the project record, a visit to the work itself, and the applicable codes and standards — expressed in a report a trier of fact can actually follow, and an opinion that holds up at deposition and on the stand.
+          </p>
+          <a href={withBase('/cv/dr-mohamed-hassan-cv.pdf')} target="_blank" rel="noopener" class="btn-primary inline-flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" /></svg>
+            View Curriculum Vitae
+          </a>
+        </div>
+
+        <div class="card p-8">
+          <h3 class="font-display font-semibold text-xl text-ink mb-6">What I can opine on</h3>
+          <ul class="space-y-4">
+            {opines.map(([t, d]) => (
+              <li class="flex items-start gap-3">
+                <svg class="w-6 h-6 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <div>
+                  <div class="font-semibold text-ink">{t}</div>
+                  <div class="text-sm text-slate-600">{d}</div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Independence -->
+  <Independence dark={true} />
+
+  <!-- Scope of work -->
+  <section class="bg-slate-50 py-20">
+    <div class="container mx-auto px-4">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="eyebrow">Scope of services</span>
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-ink mb-4">What Expert Witness Services Include</h2>
+        <p class="text-slate-600 text-lg">A complete path from case intake to testimony.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        {scope.map(([t, d], i) => (
+          <div class="card process-card p-6">
+            <div class="step-number">{i + 1}</div>
+            <h3 class="font-semibold text-ink mb-2">{t}</h3>
+            <p class="text-sm text-slate-600">{d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <ProcessSteps dark={true} />
+
+  <!-- Representative matters -->
+  <section class="bg-white py-20">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="eyebrow">Track record</span>
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-ink mb-4">Representative Matters</h2>
+        <p class="text-slate-600">A selection of expert evaluation and testimony engagements by jurisdiction.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-5">
+        {matters.map(([name, where]) => (
+          <div class="card p-6 flex items-center justify-between gap-4">
+            <div class="font-display font-semibold text-lg text-ink">{name}</div>
+            <span class="text-sm text-slate-500 whitespace-nowrap">{where}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Jurisdictions cross-link -->
+  <section class="bg-slate-50 py-16">
+    <div class="container mx-auto px-4 text-center max-w-2xl mx-auto">
+      <h2 class="font-display font-bold text-2xl md:text-3xl text-ink mb-4">Available in your jurisdiction</h2>
+      <p class="text-slate-600 mb-8">Retained across the Washington, D.C. metropolitan region.</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        {geoAreas.map((g) => (
+          <a href={withBase(`/expert-witness/${g.slug}`)} class="area-tag text-base">{g.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <FaqAccordion faqs={expertWitnessFaqs} heading="Expert Witness FAQs" />
+
+  <!-- CTA -->
+  <CtaBanner
+    heading="Retain a qualified construction expert."
+    sub="Share a brief about the matter and the project. We'll review the record and advise on fit, scope, and next steps."
+  />
+</BaseLayout>

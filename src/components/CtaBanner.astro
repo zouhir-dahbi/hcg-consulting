@@ -1,0 +1,29 @@
+---
+interface Props {
+  heading: string;
+  sub?: string;
+  href?: string;
+  label?: string;
+}
+const {
+  heading,
+  sub,
+  href = '/contact',
+  label = 'Request a Consultation',
+} = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const fullHref = href.startsWith('http') ? href : `${base}${href}`;
+---
+
+<section class="relative bg-gradient-to-br from-primary to-ink overflow-hidden">
+  <div class="absolute inset-x-0 top-0 h-1 bg-accent"></div>
+  <div class="container mx-auto px-4 py-16 lg:py-20 text-center">
+    <span class="eyebrow-light">Hassan Consulting Group</span>
+    <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-4 max-w-3xl mx-auto">{heading}</h2>
+    {sub && <p class="text-lg text-white/80 mb-8 max-w-2xl mx-auto">{sub}</p>}
+    <a href={fullHref} class="btn-accent text-lg px-8 py-4">{label}</a>
+    <p class="mt-5 text-sm text-white/60">
+      Or call <a href={`tel:+17038980204`} class="text-accent-light hover:underline font-medium">(703) 898-0204</a> — Monday to Friday, 8:00 AM to 6:00 PM.
+    </p>
+  </div>
+</section>

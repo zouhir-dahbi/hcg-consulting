@@ -1,0 +1,39 @@
+---
+interface Props {
+  dark?: boolean;
+  heading?: string;
+  subheading?: string;
+}
+const {
+  dark = false,
+  heading = 'How an Engagement Works',
+  subheading = 'A disciplined, documented process from first review to the stand.',
+} = Astro.props;
+
+const steps = [
+  ['Document Review', 'We review the complaint and answer, contracts, plans, permits, correspondence, and cost and schedule records.'],
+  ['Site Inspection', 'A field visit to evaluate existing conditions and ground the analysis in what was actually built.'],
+  ['Code & Standards Analysis', 'We interpret the applicable building codes and project standards bearing on the issues in dispute.'],
+  ['Cost & Quantification', 'Cost analysis and estimates for the work performed and the work needed to correct the deficiencies.'],
+  ['Expert Report', 'A clear, court-ready report setting out scope, methodology, findings, and opinion.'],
+  ['Deposition & Testimony', 'I sit for depositions and present live testimony, coordinated closely with you and counsel.'],
+];
+---
+
+<section class:list={[dark ? 'bg-ink text-white' : 'bg-slate-50', 'py-20']}>
+  <div class="container mx-auto px-4">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <h2 class:list={['font-display font-bold text-3xl md:text-4xl mb-4', dark ? 'text-white' : 'text-ink']}>{heading}</h2>
+      <p class:list={['text-lg', dark ? 'text-slate-300' : 'text-slate-600']}>{subheading}</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {steps.map(([title, body], i) => (
+        <div class:list={[dark ? 'card-dark' : 'card', 'process-card p-6']}>
+          <div class:list={['step-number', dark && 'bg-accent/20 text-accent-light']}>{i + 1}</div>
+          <h3 class:list={['font-semibold mb-1 text-base', dark ? 'text-white' : 'text-ink']}>{title}</h3>
+          <p class:list={['text-sm', dark ? 'text-slate-400' : 'text-slate-600']}>{body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
