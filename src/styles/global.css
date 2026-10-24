@@ -5,11 +5,10 @@
 @layer base {
   :root {
     color-scheme: light;
-    /* Surface tints for alternating light sections — cool blue-grays with a
-       warm sand option for the gold accent, on a clean off-white canvas. */
+    /* Cool blue-gray and teal tints on an off-white canvas. */
     --surface-canvas: #f4f6f8;
     --surface-mist: #e9eef5;
-    --surface-sand: #f6f2e9;
+    --surface-teal: #e5f2f1;
     --surface-grid: rgba(27, 43, 75, 0.05);
     --surface-shadow: 0 6px 24px -8px rgba(18, 26, 44, 0.16);
   }
@@ -35,10 +34,10 @@
 @layer components {
   main > :is(section, article).bg-white {
     background-color: var(--surface-canvas);
-    background-image: linear-gradient(115deg, rgba(246, 242, 233, 0.6), transparent 65%);
+    background-image: linear-gradient(115deg, rgba(229, 242, 241, 0.6), transparent 65%);
   }
   main > section.bg-slate-50 {
-    background-color: var(--surface-sand);
+    background-color: var(--surface-teal);
     background-image: linear-gradient(115deg, transparent 35%, rgba(233, 238, 245, 0.8));
   }
   main > section.bg-gradient-to-b {
@@ -76,7 +75,7 @@
 
   /* Nav links */
   .nav-link {
-    @apply relative text-[0.9375rem] xl:text-base font-semibold text-slate-700 hover:text-primary transition-colors whitespace-nowrap;
+    @apply relative text-[0.9375rem] 2xl:text-base font-semibold text-slate-700 hover:text-primary transition-colors whitespace-nowrap;
   }
   .nav-link::after {
     content: '';
@@ -108,8 +107,8 @@
     box-shadow: var(--surface-shadow);
   }
   .card:nth-child(3n + 2) {
-    --card-surface: #f4eee0;
-    --card-accent: #94742f;
+    --card-surface: #e0efee;
+    --card-accent: #0b5559;
   }
   .card:nth-child(3n) {
     --card-surface: #ecEEF1;
@@ -147,7 +146,7 @@
   }
   .card-dark:nth-child(3n + 2) {
     --card-surface: #23314f;
-    --card-accent: #b08d3e;
+    --card-accent: #0f6b70;
   }
   .card-dark:nth-child(3n) {
     --card-surface: #2a3346;
@@ -165,7 +164,7 @@
     background-color: var(--card-accent);
   }
 
-  /* Section label / eyebrow — gold for a distinguished, legal-adjacent feel */
+  /* Section labels */
   .eyebrow {
     @apply inline-block text-accent font-semibold tracking-wider2 text-sm uppercase mb-3;
   }

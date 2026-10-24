@@ -4,7 +4,7 @@
 export const homeFaqs = [
   {
     q: 'Who do you typically work with?',
-    a: 'Attorneys, insurance carriers, general contractors, developers, and property owners in Virginia, the District of Columbia, and Maryland. I support both plaintiffs and defendants and am retained for litigation, arbitration, mediation, and insurance-claim matters.',
+    a: 'Attorneys, insurance carriers, general contractors, developers, and property owners in Virginia, Maryland, Washington, D.C., West Virginia, and Delaware. I support both plaintiffs and defendants and am retained for litigation, arbitration, mediation, and insurance-claim matters.',
   },
   {
     q: 'What kinds of cases do you handle?',
@@ -12,11 +12,11 @@ export const homeFaqs = [
   },
   {
     q: 'Do you testify in court?',
-    a: 'Yes. I have served as a testifying expert for 18 years and have been admitted in the Virginia and Washington, D.C. court systems. I prepare reports, sit for depositions, and present live testimony.',
+    a: 'Yes. I have served as a testifying expert for 20 years and have been admitted in the Virginia and Washington, D.C. court systems. I prepare reports, sit for depositions, and present live testimony.',
   },
   {
     q: 'How do I retain you as an expert?',
-    a: 'Start with a brief description of the matter. We review the complaint, contracts, and project documents, and I will advise on fit, scope, and next steps. Most engagements begin with a document review before any site visit.',
+    a: 'Start with a brief description of the matter. We review the complaint, the answer to the complaint, contracts, and project documents, and I will advise on fit, scope, and next steps. Most engagements begin with a document review before any site visit.',
   },
 ];
 
@@ -35,11 +35,11 @@ export const expertWitnessFaqs = [
   },
   {
     q: 'Are you qualified to testify?',
-    a: 'I hold a Ph.D. in construction management, a P.E. license in Virginia and Texas, a Class “A” contractor license in Virginia and Washington, D.C., and I am a Supreme Court of Virginia certified mediator. I have testified and prepared expert reports for 18 years and am admitted in the Virginia and D.C. court systems.',
+    a: 'I hold a Ph.D. in construction management, a P.E. license in Virginia and Texas, a Class “A” contractor license in Virginia and Washington, D.C., and I am a Supreme Court of Virginia certified mediator. I have testified and prepared expert reports for 20 years and am admitted in the Virginia and D.C. court systems.',
   },
   {
     q: 'Which jurisdictions do you cover?',
-    a: 'Primarily Virginia, the District of Columbia, and Maryland, with additional testimony delivered in West Virginia and Delaware.',
+    a: 'Virginia, Maryland, Washington, D.C., West Virginia, and Delaware.',
   },
   {
     q: 'Do you represent both sides?',

@@ -3,7 +3,7 @@
 Website for **Hassan Consulting Group LLC**, a construction expert-witness practice led by
 **Dr. Mohamed E. Hassan, Ph.D., P.E.** The practice provides independent expert testimony and
 construction-management analysis for defect, cost, and delay disputes, serving attorneys,
-contractors, owners, and insurers in **Virginia, Washington, D.C., and Maryland**.
+contractors, owners, and insurers in **Virginia, Maryland, Washington, D.C., West Virginia, and Delaware**.
 
 Built with **Astro** + **Tailwind CSS**, with light interactivity from **Alpine.js** (CDN) and
 **Cloudflare Turnstile** for the contact form. Ships as a static site to GitHub Pages.
@@ -20,7 +20,9 @@ Built with **Astro** + **Tailwind CSS**, with light interactivity from **Alpine.
 
 ### Brand
 
-Navy + gold. Primary `#1B2B4B`, accent `#B08D3E`, ink `#121A2C`. Defined in `tailwind.config.mjs`.
+Navy + teal. Primary `#1B2B4B`, accent `#0F6B70` (light `#75D5CF`, dark `#0B5559`),
+ink `#121A2C`. Defined in `tailwind.config.mjs`. Use the light accent on dark surfaces
+and white labels on solid teal buttons and badges.
 
 ## Project structure
 
@@ -80,6 +82,14 @@ fallbacks (the header loads it as an `<img>`, which can't pull the web font — 
 system serif, intentionally kept legible). `BaseLayout.astro` applies the icons and branded
 preview sitewide; explicit page/blog images retain their own previews. Asset URLs respect
 `BASE_PATH`, and the manifest uses relative URLs to support GitHub project pages.
+
+The current H artwork is retained pending the customer's replacement company logo; the
+supplied site images did not include a distinct replacement. Update all four lockups and
+the icons/social preview together when the original logo is provided.
+
+`public/brand/og-image.svg` is the editable source for `public/og-image.png` (1200 × 630).
+Regenerate the PNG after editing it. The Apple touch icon (180 × 180) and ICO (32/48 px)
+are rasterized from `public/favicon.svg`.
 
 ## Commands
 
@@ -142,15 +152,19 @@ The site intentionally ships without certain content until real, verified inform
 - [ ] **Contact form** — deploy the Worker + Turnstile and set `PUBLIC_FORM_ENDPOINT` /
       `PUBLIC_TURNSTILE_SITE_KEY` (see above).
 - [ ] **CV** — review `public/cv/dr-mohamed-hassan-cv.pdf` (3-page, generated from
-      `cv/dr-mohamed-hassan-cv.html`) for factual accuracy before launch.
+      `cv/dr-mohamed-hassan-cv.html`) for factual accuracy before launch. The existing CV
+      has been synchronized with the customer's 20-year testimony figure, office address,
+      service coverage, and teal styling; a separate revised CV attachment was not available.
+- [ ] **Company logo** — obtain the customer's original company logo to replace the current H artwork.
 - [ ] **Photos** — verify each stock image fits its slot; remap in `src/data/siteImages.ts` and
       tighten the alt text in `src/data/blogImages.ts`.
 - [ ] **Credentials** — only document-verified claims are used (PE VA/TX, Class A contractor VA/DC,
       admitted in VA + D.C. courts, VA Supreme Court–approved mediator). Do **not** add "Licensed,"
       "Certified," or similar until verified documentation exists.
 - [ ] **No fabricated proof** — do **not** add reviews, testimonials, or case outcomes that are not real.
-- [ ] **No home address** — only the business mailing address (P.O. Box) is shown; do not add the
-      personal address.
+- [ ] **Office address** — the customer requested publication of 4207 Stepney Drive,
+      Gainesville, VA 20155. Contact/footer map links and structured data use the shared
+      address in `src/data/site.ts`; confirm any later address changes with the customer.
 - [ ] **Analytics / Google Business Profile** — add once accounts exist.
 
 ## Notes

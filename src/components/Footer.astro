@@ -9,7 +9,7 @@ const year = new Date().getFullYear();
 
 <footer class="bg-ink text-slate-300">
   <div class="container mx-auto px-4 py-16">
-    <div class="grid md:grid-cols-4 gap-10 mb-12">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
       <div class="md:col-span-1">
         <a href={withBase('/')} aria-label={`${site.name} home`} class="inline-flex items-center mb-5 p-1">
           <img
@@ -23,14 +23,14 @@ const year = new Date().getFullYear();
           />
         </a>
         <p class="text-sm text-slate-400 mb-5">
-          Construction expert witness and construction-management consulting for commercial and residential projects in Virginia, Washington, D.C., and Maryland.
+          Construction expert witness and construction-management consulting for commercial and residential projects in Virginia, Maryland, Washington, D.C., West Virginia, and Delaware.
         </p>
       </div>
 
       <div>
         <h2 class="font-display font-semibold text-white text-lg mb-4">Services</h2>
         <ul class="space-y-2 text-sm">
-          <li><a href={withBase('/expert-witness')} class="hover:text-accent-light transition-colors">Expert Witness</a></li>
+          <li><a href={withBase('/expert-witness')} class="hover:text-accent-light transition-colors">Construction Expert Witness</a></li>
           {practiceAreas.map((p) => (
             <li><a href={withBase(`/${p.slug}`)} class="hover:text-accent-light transition-colors">{p.title}</a></li>
           ))}
@@ -43,6 +43,8 @@ const year = new Date().getFullYear();
           {geoAreas.map((g) => (
             <li><a href={withBase(`/expert-witness/${g.slug}`)} class="hover:text-accent-light transition-colors">{g.name}</a></li>
           ))}
+          <li>West Virginia</li>
+          <li>Delaware</li>
           <li><a href={withBase('/blog')} class="hover:text-accent-light transition-colors">Insights</a></li>
           <li><a href={withBase('/about')} class="hover:text-accent-light transition-colors">About Dr. Hassan</a></li>
         </ul>
@@ -63,7 +65,12 @@ const year = new Date().getFullYear();
               {site.email}
             </a>
           </li>
-          <li class="text-slate-400 leading-relaxed">{site.address.line1}<br />{site.address.line2}</li>
+          <li class="text-slate-400 leading-relaxed">
+            <span class="block font-semibold text-slate-300">Office</span>
+            <a href={site.address.mapsHref} target="_blank" rel="noopener noreferrer" class="hover:text-accent-light transition-colors">
+              {site.address.line1}<br />{site.address.line2}
+            </a>
+          </li>
           <li>
             <a href={withBase('/contact')} class="btn-accent text-sm mt-1">Request Consultation</a>
           </li>

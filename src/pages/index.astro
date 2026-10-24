@@ -28,8 +28,8 @@ const areaIcons: Record<string, string> = {
 ---
 
 <BaseLayout
-  title="Construction Expert Witness in Virginia & Washington, D.C. | Hassan Consulting Group"
-  description="Independent construction expert witness for defect, cost, and delay disputes in Virginia, Washington, D.C., and Maryland. 45 years in construction, Ph.D. in construction management, P.E. licensed, and admitted in the Virginia and D.C. court systems."
+  title="Construction Expert Witness in VA, MD, DC, WV & DE | Hassan Consulting Group"
+  description="Independent expert opinions and testimony for construction dispute matters in Virginia, Maryland, Washington, D.C., West Virginia, and Delaware. 45 years in construction and 20 years testifying."
 >
   <!-- Hero -->
   <section class="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white">
@@ -38,14 +38,14 @@ const areaIcons: Record<string, string> = {
         <div>
           <span class="eyebrow">{site.tagline}</span>
           <h1 class="font-display font-bold text-4xl md:text-5xl lg:text-[3.4rem] leading-[1.1] text-ink mb-6 animate-fade-in">
-            The Construction Expert Witness for <span class="text-primary">Virginia &amp; the D.C. Metro</span>
+            Construction Expert Witness for <span class="text-primary">Construction Disputes</span>
           </h1>
           <p class="text-lg md:text-xl text-slate-600 mb-8 max-w-xl animate-fade-in-delay">
-            Independent, court-ready opinions on construction defects, costs, and delays in Virginia, the D.C. metro, and Maryland — grounded in 45 years of construction, a Ph.D. in construction management, and 18 years of testimony.
+            Independent expert opinions and testimony for construction dispute matters in Virginia, Maryland, Washington, D.C., West Virginia, and Delaware — grounded in 45 years of construction, a Ph.D. in construction management, and 20 years of testimony.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 animate-fade-in-delay-2">
             <a href={withBase('/contact')} class="btn-accent text-lg px-8 py-4">Request a Consultation</a>
-            <a href={withBase('/expert-witness')} class="btn-outline text-lg px-8 py-4">Expert Witness Services</a>
+            <a href={withBase('/expert-witness')} class="btn-outline text-lg px-8 py-4">Construction Expert Witness Services</a>
           </div>
         </div>
 
@@ -64,7 +64,7 @@ const areaIcons: Record<string, string> = {
             <div class="absolute inset-3 rounded-lg border border-accent/50 pointer-events-none"></div>
           </div>
           <div class="absolute -bottom-5 -left-3 sm:-left-5 bg-white rounded-xl shadow-card-hover p-4 hidden md:flex items-center gap-3">
-            <div class="w-12 h-12 rounded-full bg-accent text-ink font-display font-bold text-lg flex items-center justify-center">45+</div>
+            <div class="w-12 h-12 rounded-full bg-accent text-white font-display font-bold text-lg flex items-center justify-center">45+</div>
             <div>
               <div class="font-bold text-ink text-sm">Years in Construction</div>
               <div class="text-sm text-slate-500">Ph.D. · P.E. · Admitted VA &amp; D.C.</div>
@@ -86,14 +86,17 @@ const areaIcons: Record<string, string> = {
           <span class="eyebrow">One focus</span>
           <h2 class="font-display font-bold text-3xl md:text-4xl text-ink mb-5">An expert your case can stand on</h2>
           <p class="text-slate-600 mb-4 text-lg">
-            Hassan Consulting Group concentrates on one thing: defensible, court-ready opinions on construction defects, costs, and delays — and presenting them clearly at deposition and trial.
+            Hassan Consulting Group provides independent expert opinions and testimony for construction dispute matters, with field investigation and review of engineering documents, project photos, court complaints, expert reports, and testimony.
           </p>
           <p class="text-slate-600 mb-8">
-            Every opinion is measured against the contract, the plans, the applicable building codes, and recognized industry standards. That is the difference between an opinion and a finding — grounded analysis of causation, standard of care, and damages that a trier of fact can rely on.
+            We prepare Expert Evaluation Reports for clients and the court system. Every opinion is measured against the contract, the plans, the applicable building codes, and recognized industry standards — grounded analysis of causation, standard of care, and damages that a trier of fact can rely on.
           </p>
           <a href={withBase('/expert-witness')} class="text-primary font-semibold hover:text-primary-dark inline-flex items-center gap-2">
-            Explore expert witness services
+            Explore construction expert witness services
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </a>
+          <a href={withBase('/cv/dr-mohamed-hassan-cv.pdf')} target="_blank" rel="noopener" class="block mt-5 text-primary font-semibold hover:text-primary-dark underline underline-offset-2">
+            View Curriculum Vitae
           </a>
         </div>
         <div class="card p-8">
@@ -160,13 +163,15 @@ const areaIcons: Record<string, string> = {
     <div class="container mx-auto px-4">
       <div class="text-center max-w-2xl mx-auto mb-12">
         <span class="eyebrow">Where I practice</span>
-        <h2 class="font-display font-bold text-3xl md:text-4xl text-ink mb-4">Serving the D.C. Metropolitan Region</h2>
-        <p class="text-slate-600 text-lg">Expert witness and construction-management services across Virginia, Washington, D.C., and Maryland.</p>
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-ink mb-4">Serving Five Jurisdictions</h2>
+        <p class="text-slate-600 text-lg">Independent expert opinions and testimony for construction dispute matters in Virginia, Maryland, Washington, D.C., West Virginia, and Delaware.</p>
       </div>
       <div class="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto mb-10">
         {geoAreas.map((g) => (
           <a href={withBase(`/expert-witness/${g.slug}`)} class="area-tag text-base">{g.name}</a>
         ))}
+        <span class="area-tag text-base">West Virginia</span>
+        <span class="area-tag text-base">Delaware</span>
       </div>
     </div>
   </section>
@@ -176,7 +181,7 @@ const areaIcons: Record<string, string> = {
 
   <!-- CTA -->
   <CtaBanner
-    heading="Discuss your matter with a qualified construction expert."
-    sub="Tell us about the project and the issue. We'll review the record and advise on fit, scope, and next steps."
+    heading="Request Construction Expert Consultation"
+    sub="Tell us about your case and related issues. We will review the complaint and the answer to the complaint and advise you accordingly."
   />
 </BaseLayout>

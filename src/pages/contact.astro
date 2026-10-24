@@ -14,14 +14,14 @@ const matters = ['Construction defect', 'Cost & delay claim', 'Expert witness / 
 ---
 
 <BaseLayout
-  title="Request a Consultation | Hassan Consulting Group"
-  description="Contact Dr. Hassan to discuss a construction defect, cost, or delay matter, expert witness retention, or mediation in Virginia, Washington, D.C., and Maryland."
+  title="Request Construction Expert Consultation | Hassan Consulting Group"
+  description="Contact Dr. Hassan to discuss your construction case in Virginia, Maryland, Washington, D.C., West Virginia, or Delaware. We review the complaint and the answer to the complaint and advise you accordingly."
 >
   <PageHeader
     center={true}
     eyebrow="Contact"
-    title="Request a Consultation"
-    sub="Tell us about the project and the issue. We'll review the record and advise on fit, scope, and next steps — no obligation."
+    title="Request Construction Expert Consultation"
+    sub="Tell us about your case and related issues. We will review the complaint and the answer to the complaint and advise you accordingly."
   />
 
   <section class="bg-white py-16">
@@ -58,8 +58,8 @@ const matters = ['Construction defect', 'Cost & delay claim', 'Expert witness / 
             </div>
             <div>
               <h3 class="font-display font-semibold text-lg text-ink mb-1">Office</h3>
-              <div class="text-slate-700">{site.address.line1}<br />{site.address.line2}</div>
-              <p class="text-sm text-slate-500 mt-1">Mailing address — site visits by appointment.</p>
+              <a href={site.address.mapsHref} target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary-dark underline underline-offset-2">{site.address.line1}<br />{site.address.line2}</a>
+              <p class="text-sm text-slate-500 mt-1">Office and site visits by appointment.</p>
             </div>
           </div>
 
@@ -78,8 +78,8 @@ const matters = ['Construction defect', 'Cost & delay claim', 'Expert witness / 
           </div>
         </div>
         <div class="mt-8 rounded-lg bg-slate-50 border border-slate-200 p-6">
-          <p class="text-sm text-slate-600 mb-2">Serving the D.C. metropolitan region</p>
-          <p class="text-sm text-slate-500">{site.serviceRegion}. Travel available for site visits in Virginia, Maryland, West Virginia, and Delaware.</p>
+          <p class="text-sm text-slate-600 mb-2">Construction dispute services across five jurisdictions</p>
+          <p class="text-sm text-slate-500">{site.serviceRegion}. Site visits available by appointment.</p>
         </div>
       </div>
 

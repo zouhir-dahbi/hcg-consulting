@@ -14,16 +14,19 @@ export const site = {
   // routed to Dr. Hassan's real inbox via Cloudflare Email Routing.
   email: 'info@hcgconsulting.com',
   emailHref: 'mailto:info@hcgconsulting.com',
-  // Only the public P.O. Box is listed — not a residential address.
   address: {
-    line1: 'P.O. Box 385',
-    line2: 'Haymarket, Virginia 20168',
+    line1: '4207 Stepney Drive',
+    line2: 'Gainesville, VA 20155',
+    locality: 'Gainesville',
+    region: 'VA',
+    postalCode: '20155',
+    mapsHref: 'https://www.google.com/maps/search/?api=1&query=4207+Stepney+Drive,+Gainesville+VA+20155',
   },
   hours: [
     ['Monday – Friday', '8:00 AM – 6:00 PM'],
     ['Saturday & Sunday', 'By appointment'],
   ] as [string, string][],
-  serviceRegion: 'Washington D.C. Metro · Virginia · Maryland',
+  serviceRegion: 'Virginia · Maryland · Washington, D.C. · West Virginia · Delaware',
 };
 
 export const social: Record<string, string> = {};

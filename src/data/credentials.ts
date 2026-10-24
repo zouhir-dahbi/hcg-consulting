@@ -2,7 +2,7 @@
 // traceable to the CV / verified licensure — do not round up.
 export const credentials = [
   { stat: '45+', label: 'Years in Construction' },
-  { stat: '18', label: 'Years as Expert Witness' },
+  { stat: '20', label: 'Years Testifying' },
   { stat: 'Ph.D.', label: 'Construction Management' },
   { stat: 'P.E.', label: 'Licensed · Virginia & Texas' },
 ];

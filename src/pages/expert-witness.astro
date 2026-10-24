@@ -14,11 +14,11 @@ const withBase = (h: string) => (h.startsWith('http') ? h : `${base}${h}`);
 
 const scope = [
   ['Review of the pleadings', 'Review of the court complaint and the answer to the complaint to frame the issues in dispute.'],
-  ['Collection and analysis of the record', 'Contractual agreements, architecture and engineering plans, government permits and inspections, project photos and video, and email correspondence.'],
+  ['Collection and analysis of the record', 'Review of engineering documents, project photos, court complaints, expert reports, and testimony, along with contracts, permits, inspections, and correspondence.'],
   ['Site investigation', 'A field visit to the project site to evaluate existing conditions and confirm what was actually built.'],
   ['Building-code analysis', 'Analysis and evaluation of the applicable building codes and project standards.'],
   ['Cost estimates', 'Preparation of cost estimates and cost analysis for completed work and for work needed to correct deficiencies.'],
-  ['Expert Evaluation Report', 'Preparation of a clear, court-ready expert report presenting findings and opinion.'],
+  ['Expert Evaluation Report', 'Preparation of Expert Evaluation Reports for clients and the court system, presenting clear, court-ready findings and opinions.'],
   ['Depositions and hearings', 'Attendance at all required depositions and court hearings.'],
   ['Trial preparation', 'Coordination with the client and counsel in preparation for final hearings and trial.'],
 ];
@@ -40,12 +40,12 @@ const matters = [
 
 <BaseLayout
   title="Construction Expert Witness — Defect, Cost & Delay Testimony | Hassan Consulting Group"
-  description="Construction expert witness services: document review, site investigation, building-code analysis, cost estimates, expert reports, depositions, and testimony. Admitted in the Virginia and Washington, D.C. court systems."
+  description="Independent construction expert opinions and testimony in Virginia, Maryland, Washington, D.C., West Virginia, and Delaware. Field investigation, document review, and Expert Evaluation Reports for clients and the court system."
 >
   <PageHeader
-    eyebrow="Expert Witness"
+    eyebrow="Construction Expert Witness"
     title="Construction Expert Witness"
-    sub="Independent expert opinions and testimony for construction dispute matters in Virginia, Washington, D.C., and Maryland — from the first document review to the stand."
+    sub="Independent expert opinions and testimony for construction dispute matters in Virginia, Maryland, Washington, D.C., West Virginia, and Delaware."
   />
 
   <!-- Lead + CV -->
@@ -53,13 +53,13 @@ const matters = [
     <div class="container mx-auto px-4">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <span class="eyebrow">18 years testifying</span>
+          <span class="eyebrow">20 years testifying</span>
           <h2 class="font-display font-bold text-3xl md:text-4xl text-ink mb-5">Opinions grounded in the field, presented for the court</h2>
           <p class="text-slate-600 mb-4 text-lg">
-            Over the past 18 years, I have testified and prepared expert witness reports for disputed construction matters in Virginia, the District of Columbia, West Virginia, and Delaware.
+            Over the past 20 years, I have testified and prepared expert witness reports for disputed construction matters. I provide independent expert opinions and testimony in Virginia, Maryland, Washington, D.C., West Virginia, and Delaware.
           </p>
           <p class="text-slate-600 mb-8">
-            Every opinion is built on the same foundation: a careful review of the project record, a visit to the work itself, and the applicable codes and standards — expressed in a report a trier of fact can actually follow, and an opinion that holds up at deposition and on the stand.
+            My work includes field investigation and review of engineering documents, project photos, court complaints, expert reports, and testimony. I prepare Expert Evaluation Reports for clients and the court system, grounding each opinion in the project record and applicable codes and standards.
           </p>
           <a href={withBase('/cv/dr-mohamed-hassan-cv.pdf')} target="_blank" rel="noopener" class="btn-primary inline-flex items-center gap-2">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" /></svg>
@@ -93,7 +93,7 @@ const matters = [
     <div class="container mx-auto px-4">
       <div class="text-center max-w-2xl mx-auto mb-12">
         <span class="eyebrow">Scope of services</span>
-        <h2 class="font-display font-bold text-3xl md:text-4xl text-ink mb-4">What Expert Witness Services Include</h2>
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-ink mb-4">What Construction Expert Witness Services Include</h2>
         <p class="text-slate-600 text-lg">A complete path from case intake to testimony.</p>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
@@ -134,11 +134,13 @@ const matters = [
   <section class="bg-slate-50 py-16">
     <div class="container mx-auto px-4 text-center max-w-2xl mx-auto">
       <h2 class="font-display font-bold text-2xl md:text-3xl text-ink mb-4">Available in your jurisdiction</h2>
-      <p class="text-slate-600 mb-8">Retained across the Washington, D.C. metropolitan region.</p>
+      <p class="text-slate-600 mb-8">Available for construction dispute matters in Virginia, Maryland, Washington, D.C., West Virginia, and Delaware.</p>
       <div class="flex flex-wrap justify-center gap-3">
         {geoAreas.map((g) => (
           <a href={withBase(`/expert-witness/${g.slug}`)} class="area-tag text-base">{g.name}</a>
         ))}
+        <span class="area-tag text-base">West Virginia</span>
+        <span class="area-tag text-base">Delaware</span>
       </div>
     </div>
   </section>

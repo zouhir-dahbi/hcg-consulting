@@ -33,12 +33,15 @@ const serviceLd = {
     { '@type': 'State', name: 'Virginia' },
     { '@type': 'City', name: 'Washington, D.C.' },
     { '@type': 'State', name: 'Maryland' },
+    { '@type': 'State', name: 'West Virginia' },
+    { '@type': 'State', name: 'Delaware' },
   ],
   address: {
     '@type': 'PostalAddress',
-    postalCode: 20168,
-    addressLocality: 'Haymarket',
-    addressRegion: 'VA',
+    streetAddress: site.address.line1,
+    postalCode: site.address.postalCode,
+    addressLocality: site.address.locality,
+    addressRegion: site.address.region,
     addressCountry: 'US',
   },
   openingHoursSpecification: [

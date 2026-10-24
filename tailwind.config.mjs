@@ -11,12 +11,11 @@ export default {
           dark: '#12203C',
           light: '#33477A',
         },
-        // Muted gold — the distinguished accent for eyebrows, rules, and
-        // highlights. Pairs with navy for a premium legal-adjacent feel.
+        // Teal accent with light and dark variants for accessible contrast.
         accent: {
-          DEFAULT: '#B08D3E',
-          light: '#D3B979',
-          dark: '#94742F',
+          DEFAULT: '#0F6B70',
+          light: '#75D5CF',
+          dark: '#0B5559',
         },
         // Near-black navy used for dark "feature" sections (footer, process).
         ink: {
