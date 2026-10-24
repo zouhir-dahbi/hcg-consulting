@@ -36,7 +36,7 @@ hcg-consulting/
 │   │                                  #   Credentials, ProcessSteps, Independence
 │   ├── data/
 │   │   ├── site.ts                    # single source of truth: name, legal name, person, contact
-│   │   ├── nav.ts                     # header navigation
+│   │   ├── nav.ts                     # header navigation groups (dropdowns)
 │   │   ├── credentials.ts             # document-verified credentials + the stat strip
 │   │   ├── practiceAreas.ts           # service cards (defect / cost & delay / mediation)
 │   │   ├── geoAreas.ts                # jurisdiction pages (VA / DC / MD)
@@ -58,7 +58,7 @@ hcg-consulting/
 │   │   └── robots.txt.ts
 │   └── styles/global.css              # Tailwind layers + component classes
 ├── public/
-│   ├── brand/                         # 4 logo SVGs (full/compact, dark/white)
+│   ├── brand/                         # customer HCG SVGs: horizontal, stacked, badge, mark
 │   └── cv/                            # generated 3-page expert CV (PDF)
 ├── cv/dr-mohamed-hassan-cv.html       # CV source (regenerate the PDF from here)
 ├── cloudflare/worker/                 # contact-form endpoint (deploy, then wire up)
@@ -72,24 +72,31 @@ hcg-consulting/
 
 ## Brand assets
 
-Logo lockups live in `public/brand/`:
+The customer-supplied HCG brand kit lives in `public/brand/`:
 
-- `hcg-logo-lockup.svg` / `hcg-logo-lockup-white.svg` — full lockup (wordmark + tagline), dark/white.
-- `hcg-logo-lockup-compact.svg` / `-white.svg` — tagline dropped for the header; `-white` in the footer.
+- `hcg-mark.svg` / `hcg-mark-white.svg` — compact HCG skyline mark for standalone use.
+- `hcg-logo-horizontal.svg` / `hcg-logo-horizontal-white.svg` — supplied full outlined
+  wordmark and tagline, kept unmodified. Organization/publisher schema uses the dark version.
+- `hcg-logo-header.svg` / `hcg-logo-header-white.svg` — web lockups derived from the
+  horizontal logo. The mark is unchanged; the text group ("CONSULTING", rule, and
+  "CONSTRUCTION EXPERT WITNESS") is scaled 2.17× about its left baseline so it spans the
+  height of the "H" and sits on the mark's baseline (`viewBox="231 157 1926 645"`). The
+  header uses the dark version (220–340 px wide); the footer uses the white version.
+  Regenerate both from the horizontal logos if the source artwork changes.
+- `hcg-logo-stacked.svg` / `hcg-logo-stacked-white.svg` — stacked artwork for larger placements.
+- `hcg-badge.svg` / `hcg-badge-white.svg` — circular seal artwork.
 
-The wordmark is SVG `<text>` with a locked `textLength`, so it stays on-canvas across font
-fallbacks (the header loads it as an `<img>`, which can't pull the web font — it renders in a
-system serif, intentionally kept legible). `BaseLayout.astro` applies the icons and branded
-preview sitewide; explicit page/blog images retain their own previews. Asset URLs respect
-`BASE_PATH`, and the manifest uses relative URLs to support GitHub project pages.
+The supplied SVG wordmarks use outlined Poppins lettering, with no external font dependency.
+Dark artwork uses ink `#121A2C` and teal `#0F6B70`; white artwork uses white and light teal
+`#75D5CF` for contrast on navy surfaces. Keep the SVG masks intact: the letter gaps are
+transparent, not white strokes.
 
-The current H artwork is retained pending the customer's replacement company logo; the
-supplied site images did not include a distinct replacement. Update all four lockups and
-the icons/social preview together when the original logo is provided.
-
-`public/brand/og-image.svg` is the editable source for `public/og-image.png` (1200 × 630).
-Regenerate the PNG after editing it. The Apple touch icon (180 × 180) and ICO (32/48 px)
-are rasterized from `public/favicon.svg`.
+The supplied web assets replace the former H monogram: SVG/ICO favicons, 16/32 px PNG
+favicons, the 180 px Apple touch icon, 192/512 px Android app icons, and the 1200 × 630
+`public/og-image.png`. Update them together from the source brand kit when branding changes.
+`BaseLayout.astro` applies the icons and branded preview sitewide; explicit page/blog images
+retain their own previews. Asset URLs respect `BASE_PATH`, and the manifest uses relative
+URLs to support both GitHub project pages and a future custom domain.
 
 ## Commands
 
@@ -155,7 +162,8 @@ The site intentionally ships without certain content until real, verified inform
       `cv/dr-mohamed-hassan-cv.html`) for factual accuracy before launch. The existing CV
       has been synchronized with the customer's 20-year testimony figure, office address,
       service coverage, and teal styling; a separate revised CV attachment was not available.
-- [ ] **Company logo** — obtain the customer's original company logo to replace the current H artwork.
+- [x] **Company logo** — customer-supplied HCG skyline logo integrated with light/dark
+      variants, favicons, app icons, and link-preview artwork.
 - [ ] **Photos** — verify each stock image fits its slot; remap in `src/data/siteImages.ts` and
       tighten the alt text in `src/data/blogImages.ts`.
 - [ ] **Credentials** — only document-verified claims are used (PE VA/TX, Class A contractor VA/DC,

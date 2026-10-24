@@ -1,12 +1,13 @@
 {
   "name": "Hassan Consulting Group",
   "short_name": "HCG",
-  "description": "Construction expert witness for defect, cost, and delay disputes in Virginia, Washington, D.C., and Maryland.",
+  "description": "Construction expert witness for disputes and defects in Virginia, Maryland, Washington, D.C., West Virginia, and Delaware.",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#121A2C",
+  "background_color": "#FFFFFF",
   "theme_color": "#121A2C",
   "icons": [
-    { "src": "apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any" }
+    { "src": "android-chrome-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "android-chrome-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
   ]
 }

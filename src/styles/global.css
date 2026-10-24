@@ -94,8 +94,17 @@
   .nav-link-mobile.active {
     @apply text-primary;
   }
+  .nav-trigger {
+    @apply inline-flex items-center gap-1.5 py-2;
+  }
+  .nav-trigger::after {
+    @apply bottom-0;
+  }
   .nav-dropdown-link {
-    @apply block px-4 py-2.5 text-sm text-slate-600 hover:text-primary hover:bg-slate-50 transition-colors;
+    @apply block px-4 py-2.5 text-sm text-slate-700 hover:text-primary hover:bg-slate-50 transition-colors;
+  }
+  .nav-dropdown-link.active {
+    @apply text-primary bg-primary/5;
   }
 
   /* Cards (light) */
