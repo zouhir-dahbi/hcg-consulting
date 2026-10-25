@@ -41,9 +41,9 @@ const memberships = ['American Society of Civil Engineers (ASCE)', 'Lean Constru
 
   <!-- Bio -->
   <section class="bg-white py-20">
-    <div class="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
-      <div class="rounded-xl overflow-hidden shadow-card">
-        <Image src={siteImages.about} alt="Dr. Hassan at his desk reviewing project documents" class="w-full h-full object-cover aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5]" width={864} height={1080} sizes="(min-width: 1024px) 42vw, 100vw" loading="lazy" />
+    <div class="container mx-auto px-4 grid lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] gap-12 items-center">
+      <div class="w-full max-w-sm sm:max-w-md mx-auto lg:mx-0 lg:justify-self-center rounded-xl overflow-hidden shadow-card">
+        <Image src={siteImages.about} alt="Dr. Hassan at his desk reviewing project documents" class="w-full h-full object-cover aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5]" width={864} height={1080} sizes="(min-width: 640px) 448px, 384px" loading="lazy" />
       </div>
       <div>
         <span class="eyebrow">Since July 2012</span>

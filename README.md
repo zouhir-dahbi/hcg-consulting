@@ -58,9 +58,8 @@ hcg-consulting/
 │   │   └── robots.txt.ts
 │   └── styles/global.css              # Tailwind layers + component classes
 ├── public/
-│   ├── brand/                         # customer HCG SVGs: horizontal, stacked, badge, mark
-│   └── cv/                            # generated 3-page expert CV (PDF)
-├── cv/dr-mohamed-hassan-cv.html       # CV source (regenerate the PDF from here)
+│   ├── brand/                         # customer logo: header SVG (dark/white) + PNG master
+│   └── cv/                            # customer-supplied 4-page expert CV (PDF)
 ├── cloudflare/worker/                 # contact-form endpoint (deploy, then wire up)
 ├── .github/workflows/deploy.yml       # GitHub Pages build + deploy
 └── astro.config.mjs                   # site/base, sitemap, base-aware markdown links
@@ -72,31 +71,31 @@ hcg-consulting/
 
 ## Brand assets
 
-The customer-supplied HCG brand kit lives in `public/brand/`:
+The company logo — a blue/green roof over "HASSAN CONSULTING GROUP" — lives in
+`public/brand/`, supplied by the customer and used unmodified:
 
-- `hcg-mark.svg` / `hcg-mark-white.svg` — compact HCG skyline mark for standalone use.
-- `hcg-logo-horizontal.svg` / `hcg-logo-horizontal-white.svg` — supplied full outlined
-  wordmark and tagline, kept unmodified. Organization/publisher schema uses the dark version.
-- `hcg-logo-header.svg` / `hcg-logo-header-white.svg` — web lockups derived from the
-  horizontal logo. The mark is unchanged; the text group ("CONSULTING", rule, and
-  "CONSTRUCTION EXPERT WITNESS") is scaled 2.17× about its left baseline so it spans the
-  height of the "H" and sits on the mark's baseline (`viewBox="231 157 1926 645"`). The
-  header uses the dark version (220–340 px wide); the footer uses the white version.
-  Regenerate both from the horizontal logos if the source artwork changes.
-- `hcg-logo-stacked.svg` / `hcg-logo-stacked-white.svg` — stacked artwork for larger placements.
-- `hcg-badge.svg` / `hcg-badge-white.svg` — circular seal artwork.
+- `hcg-header-logo.svg` — header (roof `#2B3990`, stripes `#3F9A45`, name `#26306E`).
+  Shown 80–120 px tall; the name is ~12% of the logo's height, so keep it at least ~56 px tall.
+- `hcg-header-logo-white.svg` — footer and other dark backgrounds (white, stripes `#6CC36F`).
+- `hcg-header-logo.png` — 1600 px raster master, used as the organization/publisher logo in
+  structured data (search engines handle PNG more reliably than SVG).
 
-The supplied SVG wordmarks use outlined Poppins lettering, with no external font dependency.
-Dark artwork uses ink `#121A2C` and teal `#0F6B70`; white artwork uses white and light teal
-`#75D5CF` for contrast on navy surfaces. Keep the SVG masks intact: the letter gaps are
-transparent, not white strokes.
+The lettering is outlined, so no font is required. The two SVGs share identical geometry and
+differ only in fill colors (`viewBox="-16 -16 1032 384"`).
 
-The supplied web assets replace the former H monogram: SVG/ICO favicons, 16/32 px PNG
-favicons, the 180 px Apple touch icon, 192/512 px Android app icons, and the 1200 × 630
-`public/og-image.png`. Update them together from the source brand kit when branding changes.
-`BaseLayout.astro` applies the icons and branded preview sitewide; explicit page/blog images
-retain their own previews. Asset URLs respect `BASE_PATH`, and the manifest uses relative
-URLs to support both GitHub project pages and a future custom domain.
+Icons and the link preview are generated from `hcg-header-logo.svg`:
+
+- Icons use the **roof only** (the name is unreadable at icon sizes): `favicon.svg`,
+  `favicon.ico` (16/32/48), `favicon-16x16.png`, and `favicon-32x32.png` on a rounded white
+  tile so the blue roof stays visible on dark browser tabs; `apple-touch-icon.png` (180) and
+  `android-chrome-192x192.png` / `-512x512.png` on an opaque white square.
+- `og-image.png` (1200 × 630) — the full logo on white with the practice tagline and service
+  area, framed by blue/green bars.
+
+Regenerate them together whenever the logo changes. `BaseLayout.astro` applies the icons and
+branded preview sitewide; explicit page/blog images retain their own previews. Asset URLs respect
+`BASE_PATH`, and the manifest uses relative URLs to support both GitHub project pages and a
+future custom domain.
 
 ## Commands
 
@@ -158,12 +157,12 @@ The site intentionally ships without certain content until real, verified inform
       site (`hcgconstructiondisputes.com`).
 - [ ] **Contact form** — deploy the Worker + Turnstile and set `PUBLIC_FORM_ENDPOINT` /
       `PUBLIC_TURNSTILE_SITE_KEY` (see above).
-- [ ] **CV** — review `public/cv/dr-mohamed-hassan-cv.pdf` (3-page, generated from
-      `cv/dr-mohamed-hassan-cv.html`) for factual accuracy before launch. The existing CV
-      has been synchronized with the customer's 20-year testimony figure, office address,
-      service coverage, and teal styling; a separate revised CV attachment was not available.
-- [x] **Company logo** — customer-supplied HCG skyline logo integrated with light/dark
-      variants, favicons, app icons, and link-preview artwork.
+- [ ] **CV** — `public/cv/dr-mohamed-hassan-cv.pdf` is the customer-supplied
+      "Dr. Mohamed Hassan CV - Expert Witness 2026" (4 pages, Letter). Its content is
+      unchanged; only the PDF Title/Author metadata was corrected. Ask the customer to fix
+      the visible typos in their source document (e.g. the email `mehassan54@gamil.com`).
+- [x] **Company logo** — customer-supplied roof logo integrated in the header, footer,
+      structured data, favicons, app icons, and link-preview image.
 - [ ] **Photos** — verify each stock image fits its slot; remap in `src/data/siteImages.ts` and
       tighten the alt text in `src/data/blogImages.ts`.
 - [ ] **Credentials** — only document-verified claims are used (PE VA/TX, Class A contractor VA/DC,
@@ -177,8 +176,10 @@ The site intentionally ships without certain content until real, verified inform
 
 ## Notes
 
-- The expert CV is generated from `cv/dr-mohamed-hassan-cv.html` (open in a browser → Print to PDF,
-  Letter size) into `public/cv/dr-mohamed-hassan-cv.pdf`. Regenerate after any content change.
+- The expert CV is supplied by the customer as a PDF (exported from Word); there is no source in
+  this repo. To update it, replace `public/cv/dr-mohamed-hassan-cv.pdf` with the new file, keeping
+  the same file name so every "View Curriculum Vitae" link continues to work. Set the PDF's
+  Title/Author metadata to Dr. Hassan's name, since browsers show the Title as the tab name.
 - The blog posts cite published standards (IRC, IBC, ASTM, ACI, AACE) by name only — no standard
   text is reproduced.
 
